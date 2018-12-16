@@ -1,7 +1,8 @@
 <?php
 session_start();
 include "../banco/banco.php";
-
+//função que verifica se ja existe um like do referente user na referente postagem
+//o "$mysqli" é a informação do banco
 function verificarClicado($id_artigo, $id_user, $mysqli){
     $id_artigo = (int)$id_artigo;
     $id_user = (int)$id_user;
@@ -15,6 +16,8 @@ function verificarClicado($id_artigo, $id_user, $mysqli){
         return false;
     }
 }
+//função adiciona o like o like na tabela do artigo e na tabela dos likes
+//o "$mysqli" é a informação do banco
 function adicionarCliques($id_artigo, $id_user, $mysqli){
     $id_artigo = (int)$id_artigo;
     $id_user = (int)$id_user;
@@ -31,6 +34,8 @@ function adicionarCliques($id_artigo, $id_user, $mysqli){
        echo "não foi possivel curtir, error no banco"; 
     }
 }
+//função que seleciona os dados para envia-los a função do JavaScript que vai atualiza-los
+//o "$mysqli" é a informação do banco
 function retornarLikes($id_artigo, $mysqli){
     $id_artigo = (int)$id_artigo;
     $selecionar_likes = mysqli_query($mysqli, "SELECT likes FROM artigo WHERE id_artigo = '$id_artigo'") or die(mysqli_error($mysqli));

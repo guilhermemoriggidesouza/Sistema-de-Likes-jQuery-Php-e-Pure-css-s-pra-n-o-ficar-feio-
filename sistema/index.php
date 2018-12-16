@@ -26,10 +26,12 @@
     </div>
     <div>
         <?php
+            //inclusão dos arquivos necessarios
             include "banco/banco.php";
             require_once "classes_php/CadastrarArtigo.php";
             require_once "classes_php/SelecionarArtigo.php";
 
+            //verificação do envio de formulario e criação do objeto para cadastro
             if(isset($_POST['titulo']) && isset($_POST['corpo'])){
                 if($_POST['titulo'] != ""  && $_POST['corpo'] != ""){
                         $corpo = $_POST['corpo'];
@@ -45,10 +47,12 @@
                 }
             }
 
+            //laço de repetição com as informações pegas do banco de dados vinda do arquivo "selecionarArtigo.php"
             echo "<ul class='pure-menu-list'>";
              foreach(selecionar("artigo", $mysqli) as $artigos){
                 echo "<li class='pure-menu-item'><h2>".$artigos['titulo']."</h2>";
                 echo "<p>".$artigos['corpo']."</p>";
+                //cria um botão q envia informações do php para função ancora JavaScript
                 echo "<p><a href='#' class='pure-button' onclick='addLike(".$artigos['id_artigo'].")'>like</a><span id=artigo_".$artigos['id_artigo']."_like>curtidas: </spa>".$artigos['likes']."</p></li>";
              }
             echo "</ul>"

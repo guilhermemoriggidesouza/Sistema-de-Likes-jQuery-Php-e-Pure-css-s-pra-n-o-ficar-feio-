@@ -1,5 +1,7 @@
 <?php
 include "banco/banco.php";
+    //seleciona os dados da tabela e envia para o index para serem processados
+    //o "$mysqli" é a informação do banco
     function selecionar($table, $mysqli){
         $query = mysqli_query($mysqli, "SELECT * FROM $table ORDER BY id_artigo desc")or die(mysqli_error($mysqli));
         $total = mysqli_num_rows($query)or die(mysqli_error($mysqli));

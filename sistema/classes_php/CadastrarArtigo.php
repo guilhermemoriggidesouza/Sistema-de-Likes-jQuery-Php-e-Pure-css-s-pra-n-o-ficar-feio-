@@ -1,4 +1,5 @@
 <?php
+//função em poo que inseri os dados do artigo na tabela 
 include "banco/banco.php";
 class CadastrarArtigo{
     private $corpo;
